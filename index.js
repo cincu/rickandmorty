@@ -10,35 +10,21 @@ const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
-const maxPage = 1;
-const page = 1;
+let maxPage = 1;
+let page = 1;
 const searchQuery = "";
-
-
-//fetch the data: 
-// Now we can fetch the character data from the API and generate our cards with it.
-
-// - Inside of the `index.js` create a function called `fetchCharacters`.
-// - Use your knowledge about fetching to get the first 20 characters from the API.
-//  You can find the
-//   correct API endpoint in the docs.
-// - Import the `createCharacterCard` function.
-// - After successfully fetching the character data, use array methods to create
-//  an HTML card for each
-//   character and append it to the `cardContainer`.
-// - Make sure that the `cardContainer` is emptied every time new characters are
-//  fetched (HINT: you can
-//   use `innerHTML = ''` for that).
-// - Call the function inside the `index.js`. Now you should see 20 cards in your app.
 
 async function fetchCharactersAndRenderCard() {
   
   try {
-    const response = await fetch ('https://rickandmortyapi.com/api/character')
+    const response = await fetch (`https://rickandmortyapi.com/api/character?page=${page}`)
     console.log(response)
     const data = await response.json()
+    maxPage = data.info.pages
+    pagination.innerHTML=`${page}/${maxPage}`
     console.log(data)
     const characters = data.results 
+
 
     characters.forEach((character) => {
       console.log(character);
@@ -52,7 +38,23 @@ async function fetchCharactersAndRenderCard() {
   }
 }
 
+//pagination
+
+prevButton.addEventListener('click', () => {
+  if (page>=2) {
+    page = page-1;
+    pagination.append(page);
+    cardContainer.innerHTML=''
+    fetchCharactersAndRenderCard()
+  } else {}
+})
+
+nextButton.addEventListener('click', () => {
+  if (page<=42) {
+  page = page+1;
+  pagination.append(page);
+  cardContainer.innerHTML=''
+  fetchCharactersAndRenderCard()}
+})
+
 fetchCharactersAndRenderCard();
-   //rendering card with forEach function
-   //it requires a function Card() >>> creates and appends the card
-   //renderElement() function appends the created element to the body/root/main etc.
