@@ -1,7 +1,5 @@
 export function createCharacterCard(character) {
-  const card = document.createElement("li");
-  card.classList.add("card");
-  card.innerHTML = `<div class="card__image-container">
+  return `<div class="card__image-container">
     <img
       class="card__image"
       src="${character.image}"
@@ -20,5 +18,4 @@ export function createCharacterCard(character) {
       <dd class="card__info-description">${character.episode.length}</dd>
     </dl>
   </div>`;
-  return card;
 }

@@ -10,12 +10,10 @@ const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
-const maxPage = 1;
-const page = 1;
-const searchQuery = "";
-
-
-//fetch the data: 
+let maxPage = 1;
+let page = 1;
+let searchQuery = "";
+//fetch the data:
 // Now we can fetch the character data from the API and generate our cards with it.
 
 // - Inside of the `index.js` create a function called `fetchCharacters`.
@@ -32,27 +30,32 @@ const searchQuery = "";
 // - Call the function inside the `index.js`. Now you should see 20 cards in your app.
 
 async function fetchCharactersAndRenderCard() {
-  
   try {
-    const response = await fetch ('https://rickandmortyapi.com/api/character')
-    console.log(response)
-    const data = await response.json()
-    console.log(data)
-    const characters = data.results 
+    const response = await fetch(`
+      https://rickandmortyapi.com/api/character?page=${page}&name=${searchQuery}
+    `);
+    // console.log(response);
+    const data = await response.json();
+    const characters = data.results;
 
-    characters.forEach((character) => {
-      console.log(character);
-      const characterCard = createCharacterCard(character)
-      cardContainer.appendChild(characterCard)
+    const characterCards = characters.map((character) => {
+      return createCharacterCard(character);
     });
-
+    cardContainer.innerHTML = characterCards;
   } catch {
-    const errorMessage = 'Bad request'
+    const errorMessage = "Bad request";
     console.log(errorMessage);
   }
 }
 
+searchBar.addEventListener("submit", (event) => {
+  event.preventDefault();
+  searchQuery = event.target.elements.query.value;
+  page = 1;
+  fetchCharactersAndRenderCard();
+});
+
 fetchCharactersAndRenderCard();
-   //rendering card with forEach function
-   //it requires a function Card() >>> creates and appends the card
-   //renderElement() function appends the created element to the body/root/main etc.
+//rendering card with forEach function
+//it requires a function Card() >>> creates and appends the card
+//renderElement() function appends the created element to the body/root/main etc.
