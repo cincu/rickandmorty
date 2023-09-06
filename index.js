@@ -1,3 +1,4 @@
+import { createCharacterCard } from "./components/card/card.js";
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -34,15 +35,15 @@ async function fetchCharactersAndRenderCard() {
   
   try {
     const response = await fetch ('https://rickandmortyapi.com/api/character')
-    console.log('Response:', response)
+    console.log(response)
     const data = await response.json()
-    console.log('Data:', data)
-    const results = data.results 
+    console.log(data)
+    const characters = data.results 
 
-    results.forEach((result) => {
-      console.log(result);
-      const card = createCharacterCard(result)
-      
+    characters.forEach((character) => {
+      console.log(character);
+      const characterCard = createCharacterCard(character)
+      cardContainer.appendChild(characterCard)
     });
 
   } catch {
@@ -51,7 +52,7 @@ async function fetchCharactersAndRenderCard() {
   }
 }
 
-fetchCharactersAndRenderCard()
+fetchCharactersAndRenderCard();
    //rendering card with forEach function
    //it requires a function Card() >>> creates and appends the card
    //renderElement() function appends the created element to the body/root/main etc.
