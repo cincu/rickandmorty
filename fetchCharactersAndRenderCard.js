@@ -1,23 +1,27 @@
 import { createCharacterCard } from "./components/card/card.js"
 import { cardContainer } from "./index.js"
 
-export async function fetchCharactersAndRenderCard(page, searchQuery) {
-  
+const pagination = document.querySelector('[data-js="pagination"]');
+
+export async function fetchCharactersAndRenderCard(page = 1, searchQuery) {
     try {
       const response = await fetch (`https://rickandmortyapi.com/api/character?page=${page}&name=${searchQuery}`)
       console.log(response)
       const data = await response.json()
-      const characters = data.results 
-  
+      const characters = data.results
+      console.log(data)
+
+    
+      pagination.innerHTML=`${page}/${data.info.pages}`
+
       const characterCards = characters.map((character) => {
         return createCharacterCard(character);
       }).join('');
       cardContainer.innerHTML = characterCards;
-    
       return data
-  
+
     } catch (error) {
-      console.log(error);
+     alert('no bueno');
     }
   }
   
