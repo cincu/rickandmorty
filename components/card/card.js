@@ -1,5 +1,5 @@
 export function createCharacterCard(character) {
-return  `
+  return `
 <div class='card'>
 <div class="card__image-container">
     <img
@@ -20,5 +20,4 @@ return  `
       <dd class="card__info-description">${character.episode.length}</dd>
     </dl>
   </div></div>`;
-  return card;
 }
