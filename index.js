@@ -1,6 +1,6 @@
 import { createCharacterCard } from "./components/card/card.js";
 import { fetchCharactersAndRenderCard } from "./fetchCharactersAndRenderCard.js";
-export const cardContainer = document.querySelector('[data-js="card-container"]');
+import { resetPage } from "./components/reset-button/reset-button.js";
 
 const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
@@ -8,6 +8,7 @@ const prevButton = document.querySelector('[data-js="button-prev"]');
 const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 export const searchInput = document.querySelector('[data-js="searchInput"]');
+export const cardContainer = document.querySelector('[data-js="card-container"]');
 
 // States
 let maxPage = 1;
@@ -48,3 +49,4 @@ searchBar.addEventListener("submit", (event) => {
   fetchCharactersAndRenderCard(page, searchQuery);
   searchBar.reset()});
 
+  resetPage(page, searchQuery, searchBar);
