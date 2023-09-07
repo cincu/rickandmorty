@@ -8,6 +8,9 @@
   display: grid;
   grid-template-columns: 1fr 24px;
 }
+.search-bar:hover{
+  box-shadow: inset 5px 5px var(--color-high);
+}
 
 .search-bar__input {
   background-color: transparent;
@@ -23,7 +26,6 @@
 .search-bar__input:focus {
   outline: none;
 }
-
 .search-bar__icon {
   width: 20px;
   /* filter: invert(); */

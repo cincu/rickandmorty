@@ -12,7 +12,9 @@
 .card {
   width: 300px;
   background-color: var(--color-secondary);
-  border-radius: 1rem;
+}
+.card:hover {
+  box-shadow: 5px 5px var(--color-high);
 }
 .card__image-container {
   padding: 1rem;

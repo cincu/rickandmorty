@@ -11,7 +11,6 @@ export async function fetchCharactersAndRenderCard(page = 1, searchQuery) {
       const characters = data.results
       console.log(data)
 
-    
       pagination.innerHTML=`${page}/${data.info.pages}`
 
       const characterCards = characters.map((character) => {
@@ -21,6 +20,7 @@ export async function fetchCharactersAndRenderCard(page = 1, searchQuery) {
       return data
 
     } catch (error) {
+    alert('NOT A CHARACTER')
      console.log(error);
     }
   }
