@@ -21,7 +21,7 @@ export async function fetchCharactersAndRenderCard(page = 1, searchQuery) {
       return data
 
     } catch (error) {
-     alert('no bueno');
+     console.log(error);
     }
   }
   
