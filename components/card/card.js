@@ -20,5 +20,5 @@ return  `
       <dd class="card__info-description">${character.episode.length}</dd>
     </dl>
   </div></div>`;
-  return card;
+  
 }

@@ -10,63 +10,45 @@
   padding: 0;
   font-family: var(--font-family);
 }
-
 :root {
   --color-primary: rgb(51, 51, 51);
   --color-secondary: #f6f6f6;
-  --font-family: 'Source Code Pro', monospace;
+  --font-family: "Source Code Pro", monospace;
   --color-background: blueviolet;
   --color-high: rgb(162, 223, 39);
 }
-
 body {
   font-family: var(--font-family);
   color: var(--color-primary);
   margin: 1rem;
-  background:url('./background.jpg')
+  background: url("./background.jpg");
 }
-
 main {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 /* header */
-
+@import url("https://fonts.googleapis.com/css?family=CalligraphicFont&display=swap");
 .title {
+  text-align: center;
   padding: 10px 0;
   width: 100%;
   color: var(--color-secondary);
   margin-bottom: 20px;
+  font-size: 36px;
+  color: var(--color-high);
+  -webkit-text-stroke: 1px;
+  animation: titleAnimation 2s ease infinite; /* Add animation here */
 }
-
-/* buttons general */
-.button--reset {
-  width: 5px;
-  position: fixed;
-  bottom: 2rem;
+@keyframes titleAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(3);
+  }
 }
-
-button {
-  background-color: var(--color-background);
-  color: var(--color-secondary);
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.button:hover {
-  background-color: rgb(100, 15, 179);
-  box-shadow: 5px 5px var(--color-high);
-  animation: name duration timing-function delay iteration-count direction
-    fill-mode;
-}
-
-.button--reset {
-  margin-right: 20px;
-}
-
 span {
   color: white;
 }
