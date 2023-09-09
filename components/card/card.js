@@ -19,6 +19,5 @@ return  `
       <dt class="card__info-title">Occurrences</dt>
       <dd class="card__info-description">${character.episode.length}</dd>
     </dl>
-  </div></div>`;
-  
+  </div></div>`
 }

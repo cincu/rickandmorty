@@ -16,7 +16,7 @@ export const cardContainer = document.querySelector('[data-js="card-container"]'
 let maxPage = 1;
 let page = 1;
 let searchQuery = "";
-
+let statusQuery = "alive";
 
 //pagination :
 
@@ -24,17 +24,17 @@ prevButton.addEventListener('click', async() => {
   if (page>=2) {
     page -= 1;
     pagination.innerHTML = `${page} / ${maxPage}`
-    fetchCharactersAndRenderCard(page, searchQuery)}
+    fetchCharactersAndRenderCard(page, searchQuery, statusQuery)}
 })
 
 nextButton.addEventListener('click', async() => {
   if (page<=42) {
     page += 1
   pagination.innerHTML = `${page} / ${maxPage}`
-  fetchCharactersAndRenderCard(page, searchQuery)
+  fetchCharactersAndRenderCard(page, searchQuery, statusQuery)
 }})
 
-fetchCharactersAndRenderCard(page, searchQuery);
+fetchCharactersAndRenderCard(page, searchQuery, statusQuery);
 
 //navigation : 
 // resetPage(page, searchQuery, searchBar);
@@ -45,7 +45,7 @@ searchBar.addEventListener("input", (event) => {
 
 searchBar.addEventListener("submit", async(event) => {
   event.preventDefault();
-  fetchCharactersAndRenderCard(page, searchQuery);
+  fetchCharactersAndRenderCard(page, searchQuery, statusQuery);
   searchBar.reset()
 });
 
